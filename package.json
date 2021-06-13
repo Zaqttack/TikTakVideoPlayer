@@ -1,0 +1,15 @@
+{
+  "name": "discord-bots",
+  "version": "1.0.0",
+  "description": "TikTok Video player for Discord",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zaquariah Holland",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
