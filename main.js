@@ -4,7 +4,17 @@ const client = new Discord.Client();
 // npm install dotenv --save
 require('dotenv').config();
 
-const prefix = '-';
+const fs = require('fs');
+client.commands = new Discord.Collection();
+
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for(const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+
+    client.commands.set(command.name, command);
+}
+
+const prefix = '=';
 
 client.once('ready', () => {
     console.log('TikTak is online');
@@ -18,10 +28,7 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if(command === 'ping') {
-        message.channel.send('pong!');
-    }
-    else if(command === 'youtube') {
-        message.channel.send('https://www.youtube.com');
+        client.commands.get('ping').execute(message, args);
     }
 })
 
